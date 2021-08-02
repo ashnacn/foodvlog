@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Sislaf</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'hm/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+
+
+
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear">
+
+
+      <style>
+        .abcd{
+        height:100%;
+        background-position:center;
+        background-repeat:no-repeat;
+        background-size:cover;
+        }
+      </style>
+    </header>
+</div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+
+  <!-- ################################################################################################ -->
+</div>
+<div class="category">
+    {% for i in ct %}
+  <b style="color:white">
+    <a href={{i.get_url}}>{{i.cat_name}}</a><br>
+
+  </b>
+{% endfor %}
+</div>
+<div class="wrapper row3">
+  <main class="hoc container clear">
+
+    <section id="introblocks">
+      <ul class="nospace group btmspace-80">
+    {% for i in pr %}
+        <li class="one_third">
+          <figure><a class="imgover" href={{i.get_url}}><img src={{i.P_image.url}} style="height:200;" alt=""></a>
+            <figcaption>
+              <h1 class="heading">{{i.P_name}}</h1><br>
+              <p>{{i.P_desc |truncatewords:17}}</p><br>
+              <h4>{{i.P_price}}.Rs</h4>
+              <b>Stock:{{i.P_stock}}</b><br>
+            </figcaption>
+          </figure>
+        </li>
+         {% endfor %}
+
+
+
+
+
+
+      </ul>
+    </section>
+
+    <hr class="btmspace-80">
+
+    <div class="clear"></div>
+  </main>
+</div>
+
+
+</div>
+
+<script src="{% static 'hm/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.mobilemenu.js' %}"></script>
+</body>
+</html>
+{% endblock %}

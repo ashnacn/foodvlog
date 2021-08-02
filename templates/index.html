@@ -1,0 +1,163 @@
+{% load static %}
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Sislaf</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'hm/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Top Background Image Wrapper -->
+<div class="abcd" style="background-image:url({% static 'hm/images/demo/backgrounds/bg1.jpg' %});">
+  <!-- ################################################################################################ -->
+
+
+  <div class="wrapper row0">
+    <div id="topbar" class="hoc clear">
+
+      <div class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="nospace">
+
+          <li id="searchform">
+            <div>
+              <form action="{% url 'search' %}" method="get">
+                {% csrf_token %}
+                <fieldset>
+                  <legend>Quick Search:</legend>
+                  <input type="text" placeholder="Enter search item" name="q">
+                  <button type="submit"><i class="fas fa-search"></i></button>
+                </fieldset>
+              </form>
+            </div>
+          </li>
+        </ul>
+        <!-- ################################################################################################ -->
+      </div>
+    </div>
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear">
+      <div id="logo" class="fl_left">
+        <!-- ################################################################################################ -->
+        <h1><a href="index.html">AVODHA SHOPPING</a></h1>
+        <!-- ################################################################################################ -->
+      </div>
+      <nav id="mainav" class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="clear">
+
+          <li><a class="drop" href="#">Menu</a>
+
+        <!-- ################################################################################################ -->
+        <ul class="clear">
+
+          {% if user.is_authenticated %}
+          <li class="active"><i><b>Hai.{{user.username}}</b></i></li>
+
+          <li class="active"><a href="{% url 'cartDetails' %}">Cart</a></li>
+          <li class="active"><a href="accounts/logout">Logout</a></li>
+          {% else %}
+          <li class="active"><a href="accounts/register">Register</a></li>
+
+          <li class="active"><a href="accounts/login">Login</a></li>
+          {% endif %}
+
+
+
+
+</ul>
+          </li>
+
+        </ul>
+        <!-- ################################################################################################ -->
+
+        <!-- ################################################################################################ -->
+      </nav>
+
+      <style>
+        .abcd{
+        height:100%;
+        background-position:center;
+        background-repeat:no-repeat;
+        background-size:cover;
+        }
+      </style>
+    </header>
+</div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div id="pageintro" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <article>
+      <h3 class="heading">QUALITY FOOD ITEMS</h3>
+      <p>Register with us and have wuality food items at your door step.</p>
+      <footer>
+
+      </footer>
+    </article>
+    <!-- ################################################################################################ -->
+  </div>
+  <!-- ################################################################################################ -->
+</div>
+<div class="category">
+    {% for i in ct %}
+  <b style="color:white">
+    <a href={{i.get_url}}>{{i.cat_name}}</a><br>
+
+  </b>
+{% endfor %}
+</div>
+<div class="wrapper row3">
+  <main class="hoc container clear">
+
+    <section id="introblocks">
+      <ul class="nospace group btmspace-80">
+    {% for i in pg.object_list %}
+        <li class="one_third">
+          <figure><a class="imgover" href={{i.get_url}}><img src={{i.P_image.url}} style="height:200;" alt=""></a>
+            <figcaption>
+              <h1 class="heading">{{i.P_name}}</h1><br>
+              <p>{{i.P_desc |truncatewords:17}}</p><br>
+              <h4>{{i.P_price}}.Rs</h4>
+              <b>Stock:{{i.P_stock}}</b><br>
+            </figcaption>
+          </figure>
+        </li>
+         {% endfor %}
+
+
+
+
+
+
+      </ul>
+    </section>
+
+    <hr class="btmspace-80">
+    <center>
+      {% for p in pg.paginator.page_range %}
+
+      <a href="?page={{p}}" class="btn btn-light btn-sm {% if pg.number == p %} active {% endif %}">{{p}}</a>
+      {% endfor %}
+    </center>
+    <div class="clear"></div>
+  </main>
+</div>
+
+
+</div>
+
+<script src="{% static 'hm/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.mobilemenu.js' %}"></script>
+</body>
+</html>
